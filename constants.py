@@ -1,1 +1,12 @@
-DEFAULT_URL='https://nominatim.openstreetmap.org'
+DEFAULT_URL = "https://nominatim.openstreetmap.org"
+LIMIT_FOR_LIMIT_TEST = 3
+ADDRESS_WITH_MANY_RESULTS = "Tower"
+DEUTSCHLAND_COUNTRY_CODE = "de"
+NON_EXISTENT_ADDRESS = "a" * 10
+TO_BIG_ADDRESS = "a" * 10000
+ERROR_MESSAGE = "error"
+UNABLE_TO_GEOCODE_ERROR_MESSAGE = "Unable to geocode"
+NO_ADDRESS_LAT = "35.87935"
+NO_ADDRESS_LON = "16.67900"
+FAR_POINT_LAT = "9.1098"
+FAR_POINT_LON = "73.059"

@@ -1,6 +1,8 @@
-import constants
 import pytest
+
+import constants
 from apiclient import ApiClient
+
 
 def pytest_addoption(parser):
     """Чтение из консоли параметра --url, в случае, если параметр не
@@ -26,5 +28,5 @@ def api_client(config):
     Возврат класса ApiClient
     """
     return ApiClient(
-        base_url=config["url"],
+        base_url=config["url"]
     )
