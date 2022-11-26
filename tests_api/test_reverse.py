@@ -13,7 +13,7 @@ class TestReverse(ApiBase):
 
     parametrize_reverse_data = [
         {"lat": "55.7514", "lon": "37.6181", "name": "Московский Кремль"},
-        {"lat": "48.8582", "lon": "2.2944", "name": "Tour Eiffel"},
+        {"lat": "48.8582", "lon": "2.29437", "name": "Tour Eiffel"},
         {"lat": "51.48", "lon": "-0.124", "name": "Big Ben"},
         {"lat": "48.861", "lon": "2.338", "name": "Louvre"},
     ]
@@ -21,21 +21,14 @@ class TestReverse(ApiBase):
     @pytest.mark.parametrize("valid_place_data", parametrize_reverse_data)
     def test_reverse_parametrized(self, valid_place_data):
         """
-        Параметризованный тест на определение адреса по точке. Данный тест проверяет адрес/название места, находящегося в определённой
+        Параметризированный тест на определение адреса по точке. Данный тест проверяет адрес/название места, находящегося в определённой
         точке. Соответственно проверка легко может оказаться неактуальной всвязи с закрытием заведения/изменением названия улицы.
         Всвязи с этим тестовыми точками взяты известные места, название/адрес которых вряд ли поменяется.
-        Кроме названия места проверяет, как дополнилась широта и долгота (в ответе на запрос эти параметры немного меняются,
-        чтобы подобрать ближайший к точке адрес)
         """
         params = self.builder.reverse(
             lat=valid_place_data["lat"], lon=valid_place_data["lon"]
         ).params_for_api
         place_data = self.reverse_lat_and_lon(params=params)
-        lat = place_data["lat"]
-        lon = place_data["lon"]
-        assert (
-            valid_place_data["lat"] in lat and valid_place_data["lon"] in lon
-        ), f"Wrong latitude/longitude, expected {valid_place_data['lat'], valid_place_data['lon']}, got {lat, lon}"
         self.assert_display_name_from_response(
             response=place_data, expected_words=valid_place_data["name"]
         )
